@@ -1,6 +1,5 @@
 # 站点全局配置
 baseURL = "https://example.org/"
-languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
 locale = "zh-cn"
 hasCJKLanguage = true
