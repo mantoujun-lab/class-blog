@@ -1,0 +1,21 @@
+# Dependabot configuration
+# Schedule: every Wednesday at 12:00 (Asia/Shanghai)
+version: 2
+updates:
+  # Keep GitHub Actions workflow versions up-to-date.
+  # Tracks uses: in .github/workflows/*.yml once workflows are added.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "12:00"
+      timezone: "Asia/Shanghai"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    open-pull-requests-limit: 5
+    rebase-strategy: "disabled"
