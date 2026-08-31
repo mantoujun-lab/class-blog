@@ -1,10 +1,11 @@
 # 站点全局配置
-baseURL = "https://example.org/"
+baseURL = "https://blog.hjx-25pc1.xyz/"
 defaultContentLanguage = "zh-cn"
 locale = "zh-cn"
 hasCJKLanguage = true
-title = "Class Blog"
+title = "班级博客"
 theme = "hugo-theme-stack"
+copyright = "mantoujun's Lab"
 
 # 分页
 [pagination]
@@ -48,13 +49,12 @@ theme = "hugo-theme-stack"
         since = 2026
 
     [params.sidebar]
-        emoji = "📝"
-        subtitle = "记录与分享"
+        subtitle = "25级计算机应用1班"
 
     [params.article]
         [params.article.license]
             enabled = true
-            default = "Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+            default = "Licensed under MIT"
 
     [params.widgets]
         homepage = [
@@ -75,6 +75,6 @@ theme = "hugo-theme-stack"
 [[menu.social]]
     identifier = "github"
     name = "GitHub"
-    url = "https://github.com/mantoujun12"
+    url = "https://github.com/mantoujun-lab"
     [menu.social.params]
         icon = "brand-github"
