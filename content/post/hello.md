@@ -2,6 +2,8 @@
 title = 'Hello World'
 date = '2026-08-31T10:00:00+08:00'
 draft = false
+categories = ['测试']
+tags = ['hello', 'hugo']
 +++
 
 欢迎来到 Class Blog! 这里使用 Hugo 和 Stack 主题搭建.
