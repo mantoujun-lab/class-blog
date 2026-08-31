@@ -2,11 +2,11 @@
 title = 'Hello World'
 date = '2026-08-31T10:00:00+08:00'
 draft = false
-categories = ['测试']
+categories = ['展示']
 tags = ['hello', 'hugo']
 +++
 
-欢迎来到 班级博客！这里使用 Hugo 和 Stack 主题搭建。
+欢迎来到25计算机1班的班级博客！这里使用 Hugo 和 Stack 主题搭建。
 
 ## 简介
 
