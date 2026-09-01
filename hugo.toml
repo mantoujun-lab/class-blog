@@ -82,6 +82,13 @@ copyright = "mantoujun's Lab"
 
 # 侧边栏社交链接
 [[menu.social]]
+    identifier = "home"
+    name = "主站"
+    url = "https://hjx-25pc1.xyz"
+    [menu.social.params]
+        icon = "home"
+
+[[menu.social]]
     identifier = "github"
     name = "GitHub"
     url = "https://github.com/mantoujun-lab"
