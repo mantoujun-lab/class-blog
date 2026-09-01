@@ -42,6 +42,7 @@ copyright = "mantoujun's Lab"
 
 # 主题参数
 [params]
+    favicon = "/favicon.png"
     mainSections = ["post"]
     rssFullContent = true
 
