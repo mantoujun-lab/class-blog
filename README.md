@@ -47,11 +47,11 @@ class-blog/
 ├── content/              # 内容目录
 │   ├── page/             # 独立页面（归档、搜索）
 │   └── post/             # 博客文章
-├── layouts/              # 主题覆盖（含 SEO partial）
+├── layouts/              # 主题覆盖
 │   ├── 404.html          # 自定义 404 页
-│   └── partials/head/    # 覆盖主题的 head meta/JSON-LD
+│   ├── robots.txt        # 自定义 robots.txt 模板（动态生成）
+│   └── _partials/head/   # head 覆盖（继承主题并追加 JSON-LD）
 ├── static/               # 直接复制到站点的静态文件
-│   └── robots.txt        # 搜索引擎抓取规则
 ├── themes/               # Hugo 主题（Stack 主题作为 submodule）
 ├── hugo.toml             # Hugo 站点配置（含 SEO 默认值）
 ├── vercel.json           # Vercel 部署配置
@@ -131,13 +131,13 @@ tags = ['标签1', '标签2']
 | 自动输出 | 说明 |
 | --- | --- |
 | `sitemap.xml` | Hugo 内置生成，配置位于 `hugo.toml` 的 `[sitemap]` 块 |
-| `robots.txt` | 位于 `static/robots.txt`，已指向 `sitemap.xml` |
+| `robots.txt` | 由 Hugo 动态生成（`enableRobotsTXT = true`），`Sitemap` 字段自动取自 `baseURL` |
 | `index.xml` (RSS) | 主页 + 各 section 启用 RSS 输出（`[outputs]` 配置） |
 | 自定义 404 页 | `layouts/404.html`，返回首页引导，避免硬 404 |
-| Meta 标签 | description / keywords / author / robots / canonical |
-| Open Graph | og:type / title / description / url / image / locale；文章页额外输出 article:\* |
-| Twitter Card | summary / summary_large_image 自动按封面图选择 |
-| JSON-LD | WebSite（所有页）+ BlogPosting（文章页）结构化数据 |
+| Meta 标签 | 由 Stack 主题的 `head.html` 输出（description / keywords / canonical 等） |
+| Open Graph | 由主题的 `head/opengraph/include.html` 输出；文章页额外输出 `article:\*` |
+| Twitter Card | 由主题的 `head/opengraph/provider/twitter` 输出 |
+| JSON-LD | 项目 `layouts/_partials/head/jsonld.html` 追加：所有页输出 `WebSite`，`content/post/` 下的文章页再叠加 `BlogPosting` |
 
 ### 在文章中覆写 SEO 字段
 
@@ -160,9 +160,9 @@ robots = 'index, follow'             # 设为 'noindex' 可阻止收录
 
 编辑 `hugo.toml` 中 `[params]` 块下的 `description` / `keywords` / `author` / `image` / `robots` 即可，所有页面会以此为默认值。
 
-### 自定义主题 meta 时请注意
+### 自定义 head 输出时请注意
 
-`layouts/partials/head/meta.html` 覆盖了 Stack 主题的同名 partial，**不要**在主题目录（`themes/hugo-theme-stack/`）里修改它——直接修改项目内的 `layouts/` 即可。
+`layouts/_partials/head/head.html` 覆盖了 Stack 主题的同名 partial，并在末尾追加了 JSON-LD（`head/jsonld.html`）。如需调整 JSON-LD 内容，修改 `head/jsonld.html` 即可；其它 head 行为调整也请在项目级 `head.html` 中进行，避免直接改动主题目录（`themes/hugo-theme-stack/`）。
 
 ## ☁️ 部署说明
 

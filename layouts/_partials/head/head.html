@@ -1,0 +1,53 @@
+{{- /*
+  Override theme's _partials/head/head.html to layer a JSON-LD block
+  after the existing head chain (Stack theme already emits description,
+  keywords, canonical, Open Graph, Twitter Card and favicon).
+
+  In Hugo's template lookup order, project _partials take precedence
+  over theme _partials, so this file replaces the bundled
+  themes/hugo-theme-stack/layouts/_partials/head/head.html while
+  baseof.html keeps invoking `partial "head/head.html" .`.
+
+  This file intentionally mirrors the theme's head structure and ends
+  with the JSON-LD append; keep it in sync with theme changes.
+*/ -}}
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+{{- $description := partialCached "data/description" . .RelPermalink -}}
+<meta name='description' {{ printf "content=%q" $description | safeHTMLAttr }}>
+{{ with .Params.Keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+
+{{- $title := partial "data/title" . -}}
+<title>{{ $title }}</title>
+
+{{ with .Params.canonicalUrl }}
+<link rel="canonical" href="{{ . }}">
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
+
+{{- partial "head/custom-font.html" . -}}
+{{- partial "head/style.html" . -}}
+{{- partial "head/script.html" . -}}
+{{- partial "head/opengraph/include.html" . -}}
+
+{{- range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{- end -}}
+
+{{- $favicon := partial "helper/image" (dict "Image" .Site.Params.favicon "Resources" resources "Context" .) -}}
+{{ with $favicon }}
+    <link rel="shortcut icon" href="{{ .Permalink }}" />
+{{ end }}
+
+{{- if .Site.Params.cookies.enabled -}}
+    {{- partial "cookies/analytics.html" . -}}
+{{- else -}}
+    {{- template "_internal/google_analytics.html" . -}}
+{{- end -}}
+
+{{- partial "head/custom.html" . -}}
+
+{{- /* Project-level SEO addition: Schema.org JSON-LD */ -}}
+{{- partial "head/jsonld.html" . -}}

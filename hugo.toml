@@ -7,6 +7,9 @@ title = "班级博客"
 theme = "hugo-theme-stack"
 copyright = "mantoujun's Lab"
 
+# 动态生成 robots.txt（基于 baseURL，避免硬编码站点域名）
+enableRobotsTXT = true
+
 # 分页
 [pagination]
     pagerSize = 10
@@ -25,6 +28,7 @@ copyright = "mantoujun's Lab"
 # 启用 RSS 输出（提升可发现性）
 [outputs]
     home = ["HTML", "RSS"]
+    section = ["HTML", "RSS"]
 
 # Markdown 渲染 / 代码高亮 / 目录
 [markup]

@@ -1,7 +1,13 @@
 {{- /*
-  JSON-LD structured data for SEO.
-  Renders Schema.org WebSite + BlogPosting (for posts) data as a
-  JSON object embedded in a <script type="application/ld+json"> block.
+  JSON-LD structured data for SEO. Renders a Schema.org WebSite node
+  on every page and a BlogPosting node (under @graph) only on regular
+  blog posts under /post/. Standalone pages under /page/ (archives,
+  search, etc.) intentionally do NOT get BlogPosting, since they are
+  not articles.
+
+  Project-level: lives under layouts/_partials/head/ so Hugo v0.146.0+
+  recognizes it under the new template system. Invoked by
+  layouts/_partials/head/head.html.
 */ -}}
 
 {{- $site := .Site -}}
@@ -49,8 +55,8 @@
   {{- $jsonld = merge $jsonld (dict "image" $image) -}}
 {{- end }}
 
-{{- /* On post pages, layer a BlogPosting node */ -}}
-{{- if eq $page.Kind "page" }}
+{{- /* Only regular pages under the post section are BlogPosting entries. */ -}}
+{{- if and $page.IsPage (eq $page.Section "post") }}
   {{- $post := dict
     "@context" "https://schema.org"
     "@type" "BlogPosting"
