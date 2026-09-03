@@ -1,0 +1,15 @@
+# robots.txt for mantoujun's Lab class blog
+# https://blog.hjx-25pc1.xyz/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://blog.hjx-25pc1.xyz/sitemap.xml
+
+# Disallow common admin/private paths (defense in depth)
+Disallow: /admin/
+Disallow: /private/
+
+# Crawl-delay hint (seconds); adjust if your server is slow
+Crawl-delay: 1

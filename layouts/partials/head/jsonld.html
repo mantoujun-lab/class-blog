@@ -1,0 +1,86 @@
+{{- /*
+  JSON-LD structured data for SEO.
+  Renders Schema.org WebSite + BlogPosting (for posts) data as a
+  JSON object embedded in a <script type="application/ld+json"> block.
+*/ -}}
+
+{{- $site := .Site -}}
+{{- $page := . -}}
+
+{{- $description := "" -}}
+{{- with $page.Description -}}
+  {{- $description = . -}}
+{{- else -}}
+  {{- with $page.Summary -}}
+    {{- $description = (. | plainify) -}}
+  {{- else -}}
+    {{- $description = $site.Params.description | default $site.Title -}}
+  {{- end -}}
+{{- end -}}
+{{- $description = $description | plainify | chomp | strings.TrimSpace -}}
+
+{{- $author := "" -}}
+{{- with $page.Params.author -}}
+  {{- $author = . -}}
+{{- else -}}
+  {{- with $site.Params.author -}}
+    {{- $author = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $image := "" -}}
+{{- with $page.Params.cover.image -}}
+  {{- $image = . | absURL -}}
+{{- else -}}
+  {{- with $page.Params.image -}}
+    {{- $image = . | absURL -}}
+  {{- else -}}
+    {{- with $site.Params.image -}}
+      {{- $image = . | absURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $jsonld := dict "@context" "https://schema.org" "@type" "WebSite" "name" $site.Title "url" $site.BaseURL "description" $description "inLanguage" ($site.Language.Lang | default $site.LanguageCode | default "zh-CN") -}}
+{{- if $author }}
+  {{- $jsonld = merge $jsonld (dict "author" (dict "@type" "Person" "name" $author)) -}}
+{{- end }}
+{{- if $image }}
+  {{- $jsonld = merge $jsonld (dict "image" $image) -}}
+{{- end }}
+
+{{- /* On post pages, layer a BlogPosting node */ -}}
+{{- if eq $page.Kind "page" }}
+  {{- $post := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" $page.Title
+    "url" $page.Permalink
+    "description" $description
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" $page.Permalink) -}}
+  {{- with $page.Date }}
+    {{- $post = merge $post (dict "datePublished" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+  {{- end }}
+  {{- with $page.Lastmod }}
+    {{- if not (eq . $page.Date) }}
+      {{- $post = merge $post (dict "dateModified" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+    {{- end }}
+  {{- end }}
+  {{- with $author }}
+    {{- $post = merge $post (dict "author" (dict "@type" "Person" "name" .)) -}}
+  {{- end }}
+  {{- with $image }}
+    {{- $post = merge $post (dict "image" .) -}}
+  {{- end }}
+  {{- with $page.Params.categories }}
+    {{- $post = merge $post (dict "articleSection" (index . 0)) -}}
+  {{- end }}
+  {{- with $page.Params.tags }}
+    {{- $post = merge $post (dict "keywords" (delimit . ", ")) -}}
+  {{- end }}
+  {{- $jsonld = dict "@context" "https://schema.org" "@graph" (slice $jsonld $post) -}}
+{{- end }}
+
+<script type="application/ld+json">
+{{- $jsonld | jsonify -}}
+</script>
