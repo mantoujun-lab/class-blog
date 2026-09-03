@@ -6,7 +6,8 @@ description = '25级计算机应用1班班级博客开篇：使用 Hugo 与 Stac
 categories = ['展示']
 tags = ['hello', 'hugo', '班级博客']
 keywords = ['Hugo', 'Stack主题', '班级博客', '计算机应用']
-author = '一张白纸'
+author = ['mantoujun12']
+image = '/images/cover.png'
 robots = 'index, follow'
 +++
 
