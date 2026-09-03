@@ -1,0 +1,14 @@
+{{- /*
+  Custom robots.txt.
+  Hugo picks up this template when enableRobotsTXT = true and copies
+  it to the site root. Sitemap URL is built from .Site.BaseURL so
+  preview / staging environments do not need to hardcode the domain.
+*/ -}}
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ .Site.BaseURL }}sitemap.xml
+
+# Crawl-delay hint (seconds); adjust if your server is slow
+Crawl-delay: 1
