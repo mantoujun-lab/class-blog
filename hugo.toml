@@ -54,6 +54,11 @@ enableRobotsTXT = true
         lineNumbersInTable = true
         tabWidth = 4
 
+[taxonomies]
+    category = "categories"
+    tag = "tags"
+    author = "authors"
+
 # 主题参数
 [params]
     favicon = "/favicon.png"
