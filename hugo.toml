@@ -76,7 +76,7 @@ enableRobotsTXT = true
     [params.article]
         [params.article.license]
             enabled = true
-            default = "Licensed under CC BY 4.0"
+            default = "[Licensed under CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
 
     [params.widgets]
         homepage = [
