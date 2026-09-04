@@ -35,7 +35,7 @@
 | 评论系统    | Waline                                                           |
 | 部署平台    | Vercel                                                           |
 | CI/CD   | GitHub Actions                                                   |
-| 许可证     | MIT                                                              |
+| 许可证     | CC BY 4.0                                                        |
 
 ## 📁 项目结构
 
@@ -56,7 +56,7 @@ class-blog/
 ├── hugo.toml             # Hugo 站点配置（含 SEO 默认值）
 ├── vercel.json           # Vercel 部署配置
 ├── .gitmodules           # Git 子模块配置
-└── LICENSE               # MIT 许可证
+└── LICENSE               # CC BY 4.0 许可证
 ```
 
 ## 🚀 本地开发
@@ -218,4 +218,4 @@ robots = 'index, follow'             # 设为 'noindex' 可阻止收录
 
 ## 📄 许可证
 
-本项目基于 [MIT License](./LICENSE) 开源。
+本项目基于 [CC BY 4.0 License](./LICENSE) 开源。
