@@ -76,14 +76,14 @@ enableRobotsTXT = true
     [params.article]
         [params.article.license]
             enabled = true
-            default = "Licensed under MIT"
+            default = "[Licensed under CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
 
     [params.widgets]
         homepage = [
-            { type = "search" },
             { type = "archives", params = { limit = 5 } },
             { type = "categories", params = { limit = 10 } },
             { type = "tag-cloud", params = { limit = 10 } },
+            { type = "search" },
         ]
         page = [{ type = "toc" }]
 
