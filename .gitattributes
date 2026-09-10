@@ -22,9 +22,6 @@
 *.gitignore    text eol=lf
 *.gitattributes text eol=lf
 
-# Hugo template overrides
-*.html  text eol=lf
-
 # Windows batch files must keep CRLF
 *.bat    text eol=crlf
 *.cmd    text eol=crlf
