@@ -1,0 +1,18 @@
+{{- /*
+    渲染作者信息。
+    优先使用页面 front matter 中的 author；
+    否则回退到 params.article.defaultAuthor；
+    最后回退到站点 params.author。
+*/ -}}
+{{- $Page := .Page -}}
+{{- $author := or
+    (and $Page.Params.author (printf "%s" $Page.Params.author))
+    ($Page.Site.Params.article.defaultAuthor)
+    ($Page.Site.Params.author)
+-}}
+{{- if $author -}}
+<section class="article-author inline-meta">
+    {{ partial "helper/icon" "user" }}
+    <span>{{ $author }}</span>
+</section>
+{{- end -}}

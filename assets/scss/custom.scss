@@ -1,0 +1,14 @@
+/* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+
+/* 文章作者块：与日期、阅读时长同一行的内联元素 */
+.article-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    svg {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+    }
+}
