@@ -74,6 +74,11 @@ enableRobotsTXT = true
         subtitle = "25级计算机应用1班"
 
     [params.article]
+        # 是否显示作者（默认 true）
+        showAuthor = true
+        # 全局默认作者（文章 front matter 没写 author 时使用，留空则回退到顶层 params.author）
+        defaultAuthor = ""
+
         [params.article.license]
             enabled = true
             default = "[Licensed under CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
