@@ -8,6 +8,7 @@ tags = ['hello', 'hugo', '班级博客']
 keywords = ['Hugo', 'Stack主题', '班级博客', '计算机应用']
 image = '/images/covers/cover.png'
 robots = 'index, follow'
+author = '一张蓝纸'
 +++
 
 欢迎来到25计算机1班的班级博客！这里使用 Hugo 和 Stack 主题搭建。
