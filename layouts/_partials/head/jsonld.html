@@ -29,8 +29,12 @@
 {{- with $page.Params.author -}}
   {{- $author = . -}}
 {{- else -}}
-  {{- with $site.Params.author -}}
+  {{- with $site.Params.article.defaultAuthor -}}
     {{- $author = . -}}
+  {{- else -}}
+    {{- with $site.Params.author -}}
+      {{- $author = . -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
