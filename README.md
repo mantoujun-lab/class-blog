@@ -106,10 +106,13 @@ date = '2026-09-01T10:00:00+08:00'
 draft = false
 categories = ['分类名称']
 tags = ['标签1', '标签2']
+author = '你的笔名或姓名'
 +++
 
 这里写文章正文...
 ```
+
+**作者字段说明**：`author` 字段会在文章列表卡片和文章详情页顶部显示（可在 `hugo.toml` 中关闭）。如果文章不填写 `author`，会按以下顺序回退：文章 front matter 的 `author` → 站点配置中的 `params.article.defaultAuthor` → 站点配置中的 `params.author`。
 
 ### 支持的内容格式
 
@@ -149,13 +152,13 @@ tags = ['标签1', '标签2']
 title = '我的文章'
 description = '这篇文章讲了什么……'  # 不填则自动取摘要
 keywords = ['关键词1', '关键词2']
-author = '你的名字'
+author = '你的名字'                  # 会在卡片和文章页显示
 image = '/images/cover.png'          # 相对站点根的路径
 robots = 'index, follow'             # 设为 'noindex' 可阻止收录
 +++
 ```
 
-`tags` 和 `categories` 会自动作为 `keywords` 与 `article:tag` / `article:section` 输出。
+`tags` 和 `categories` 会自动作为 `keywords` 与 `article:tag` / `article:section` 输出。`author` 字段会在文章列表和详情页中可见地显示。
 
 ### 在站点级别修改默认值
 
@@ -196,6 +199,26 @@ robots = 'index, follow'             # 设为 'noindex' 可阻止收录
 - `params.sidebar.subtitle`：侧边栏副标题
 
 - `params.footer.since`：页脚起始年份
+
+### 文章作者显示
+
+在 `hugo.toml` 中配置作者显示行为：
+
+```toml
+[params.article]
+    # 是否在文章卡片和详情页显示作者（默认 true）
+    showAuthor = true
+    # 全局默认作者（当文章 front matter 中未写 author 时使用）
+    defaultAuthor = ""
+```
+
+作者字段的解析顺序：
+
+1. 文章 front matter 中的 `author` 字段
+2. `params.article.defaultAuthor`（站点配置）
+3. `params.author`（站点配置）
+
+设置 `showAuthor = false` 可全局关闭作者显示。
 
 ### 评论系统（Waline）
 
