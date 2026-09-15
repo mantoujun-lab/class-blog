@@ -24,7 +24,7 @@ Licensing is split: source code (templates, configuration, scripts) is MIT (`LIC
   - `layouts/_partials/article/components/details.html`, `author.html`: author display on article cards and detail pages.
 - `static/`: files copied verbatim to the site root; article covers live in `static/images/covers/`.
 - `assets/`: files processed by the Hugo asset pipeline (`favicon.png`, `icons/user.svg`, `funding_wechat.png`, `jsconfig.json`).
-- `data/`, `i18n/`: empty and untracked; the theme's own `data/` and `i18n/` files under `themes/hugo-theme-stack/` are the ones in effect.
+- `data/`, `i18n/`: no project-level override files exist here, since Git cannot track empty directories; the theme's own `data/` and `i18n/` files under `themes/hugo-theme-stack/` are the ones in effect.
 - `themes/hugo-theme-stack/`: the Stack theme as a Git submodule — read it for reference, never edit it.
 - `.github/workflows/build.yml`: CI build check (`hugo --gc --minify`); `.github/workflows/pullfrog.yml` is generated tooling and must not be edited.
 - `vercel.json`: deployment settings (Hugo 0.165.0 Extended, build command, output directory, cache headers, `cleanUrls`, `trailingSlash`).
@@ -46,7 +46,7 @@ Add new articles under `content/post/` and new standalone pages under `content/p
 - Put `description` on every article: it is used for the card subtitle, meta description, and JSON-LD output.
 - Store images under `static/` and reference them with site-root paths such as `/images/covers/example.png`.
 - Preserve the existing terminology, link structure, and page style when editing content.
-- Never commit secrets, tokens, personal information, build output, or local environment files. The Waline `serverURL` and analytics identifiers in `hugo.toml` are public configuration, not credentials.
+- Never commit secrets, tokens, personal information, build output, or local environment files. The Waline `serverURL` in `hugo.toml` is public configuration, not a credential.
 
 ## Theme and Template Conventions
 
