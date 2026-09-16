@@ -56,6 +56,8 @@ enableRobotsTXT = true
 
 # 主题参数
 [params]
+    # 站点版本号（语义化版本，遵循 https://semver.org/）
+    version = "0.1.0"
     favicon = "/favicon.png"
     mainSections = ["post"]
     rssFullContent = true
