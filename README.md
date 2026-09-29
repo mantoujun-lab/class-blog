@@ -94,8 +94,10 @@ hugo server # 启动本地服务器
 使用 Hugo 提供的 archetype 快速创建文章：
 
 ```bash
-hugo new post/你的文章标题.md
+hugo new post/my-post-slug.md
 ```
+
+> 文件名与 slug 建议使用小写英文、数字和连字符（如 `my-post-slug.md`），避免使用中文或空格。
 
 ### Front Matter 示例
 
@@ -104,6 +106,7 @@ hugo new post/你的文章标题.md
 title = '文章标题'
 date = '2026-09-01T10:00:00+08:00'
 draft = false
+description = '一段简短的文章摘要，用于卡片副标题、meta description 与 JSON-LD'
 categories = ['分类名称']
 tags = ['标签1', '标签2']
 author = '你的笔名或姓名'

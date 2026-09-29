@@ -51,7 +51,7 @@
   {{- end -}}
 {{- end -}}
 
-{{- $jsonld := dict "@context" "https://schema.org" "@type" "WebSite" "name" $site.Title "url" $site.BaseURL "description" $description "inLanguage" ($site.Language.Lang | default $site.LanguageCode | default "zh-CN") -}}
+{{- $jsonld := dict "@context" "https://schema.org" "@type" "WebSite" "name" $site.Title "url" $site.BaseURL "description" $description "inLanguage" ($site.Language.Locale | default "zh-CN") -}}
 {{- if $author }}
   {{- $jsonld = merge $jsonld (dict "author" (dict "@type" "Person" "name" $author)) -}}
 {{- end }}
@@ -92,5 +92,5 @@
 {{- end }}
 
 <script type="application/ld+json">
-{{- $jsonld | jsonify -}}
+{{- $jsonld | jsonify | safeJS -}}
 </script>
